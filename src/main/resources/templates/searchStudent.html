@@ -1,0 +1,27 @@
+package templates;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Student</title>
+</head>
+<body>
+    <h1>Search Student by ID</h1>
+    <form action="/searchByStudentId" method="GET">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="result">
+        <!-- Results will be displayed here -->
+        <p th:if="${student != null}">
+            Student Name: <span th:text="${student.name}"></span><br>
+            Student Age: <span th:text="${student.age}"></span><br>
+            Student Major: <span th:text="${student.major}"></span>
+        </p>
+        <p th:if="${errorMessage != null}" th:text="${errorMessage}"></p>
+    </div>
+</body>
+</html>

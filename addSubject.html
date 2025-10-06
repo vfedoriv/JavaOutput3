@@ -1,0 +1,38 @@
+package addSubject;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Subject</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Subject</h1>
+        <form id="subjectForm">
+            <label for="subjectName">Subject Name:</label>
+            <input type="text" id="subjectName" name="subjectName" required>
+            <button type="submit">Add Subject</button>
+        </form>
+        <div id="message"></div>
+    </div>
+    <script>
+        document.getElementById('subjectForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const subjectName = document.getElementById('subjectName').value;
+            const messageDiv = document.getElementById('message');
+
+            if (subjectName) {
+                messageDiv.textContent = 'Subject "' + subjectName + '" added successfully!';
+                messageDiv.style.color = 'green';
+                document.getElementById('subjectForm').reset();
+            } else {
+                messageDiv.textContent = 'Error: Subject name is required.';
+                messageDiv.style.color = 'red';
+            }
+        });
+    </script>
+</body>
+</html>
