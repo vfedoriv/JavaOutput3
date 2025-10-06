@@ -1,0 +1,29 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Course List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Course List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.id}"></td>
+                <td th:text="${course.name}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <button th:onclick="'refreshCourses()'">Refresh Course List</button>
+    <button th:onclick="'exitView()'">Exit</button>
+</body>
+</html>

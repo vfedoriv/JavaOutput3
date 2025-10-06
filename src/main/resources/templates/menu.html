@@ -1,0 +1,19 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Main Menu</h1>
+    <ul>
+        <li><a th:href="@{/add-subject}">Add Subject</a></li>
+        <li><a th:href="@{/add-course}">Add Course</a></li>
+        <li><a th:href="@{/add-student}">Add Student</a></li>
+        <li><a th:href="@{/view-student-details}">View Student Details</a></li>
+    </ul>
+</body>
+</html>

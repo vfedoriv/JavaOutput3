@@ -1,0 +1,36 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form th:action="@{/login}" method="post" th:object="${loginForm}">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{username}" required/>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" th:field="*{password}" required/>
+        </div>
+        <div th:if="${param.error}">
+            <p style="color:red;">Invalid username or password.</p>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <script>
+        window.onload = function() {
+            var usernameField = document.getElementById("username");
+            if (usernameField.value) {
+                usernameField.focus();
+            }
+        };
+    </script>
+</body>
+</html>

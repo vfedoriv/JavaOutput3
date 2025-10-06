@@ -1,0 +1,46 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Subject Options</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Manage Student Subject Options</h1>
+    
+    <form th:action="@{/subjects/add}" method="post" th:object="${subject}">
+        <label for="name">Subject Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        
+        <button type="submit">Add Subject</button>
+    </form>
+
+    <h2>Existing Subjects</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.name}"></td>
+                <td>
+                    <form th:action="@{/subjects/update/{id}(id=${subject.id})}" method="get">
+                        <button type="submit">Update</button>
+                    </form>
+                    <form th:action="@{/subjects/delete/{id}(id=${subject.id})}" method="post" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${message}" th:text="${message}"></div>
+</body>
+</html>

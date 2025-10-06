@@ -1,0 +1,17 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subject</title>
+</head>
+<body>
+    <h1>Add New Subject</h1>
+    <form action="#" th:action="@{/subjects}" method="post">
+        <label for="subjectName">Subject Name:</label>
+        <input type="text" id="subjectName" name="subjectName" required>
+        <button type="submit">Add Subject</button>
+    </form>
+</body>
+</html>

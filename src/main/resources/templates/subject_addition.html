@@ -1,0 +1,22 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Subject</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <h1>Add Subject</h1>
+    <form th:action="@{/api/subjects}" th:object="${subjectDTO}" method="post">
+        <label for="name">Subject Name:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+    <button onclick="location.reload();">Refresh</button>
+    <button onclick="window.location.href='/'">Exit</button>
+</body>
+</html>
