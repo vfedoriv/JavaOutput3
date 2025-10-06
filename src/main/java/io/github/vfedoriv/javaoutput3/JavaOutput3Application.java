@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaOutput4Application
+public class JavaOutput3Application
 {
   public static void main(String[] args) {
-    SpringApplication.run(JavaOutput3pplication.class, args);
+    SpringApplication.run(JavaOutput3Application.class, args);
   }
 }
