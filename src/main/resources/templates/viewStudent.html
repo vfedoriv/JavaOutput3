@@ -1,0 +1,30 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+    <h1>Search Student</h1>
+    <form th:action="@{/searchStudent}" method="get">
+        <label for="studentId">Student ID:</label>
+        <input type="text" id="studentId" name="studentId" th:value="${studentId}"/>
+        <button type="submit">Search</button>
+    </form>
+
+    <div th:if="${student}">
+        <h2>Student Details</h2>
+        <p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${student.name}"></span></p>
+        <p><strong>Age:</strong> <span th:text="${student.age}"></span></p>
+        <p><strong>Major:</strong> <span th:text="${student.major}"></span></p>
+    </div>
+
+    <div th:if="${not student}">
+        <p>No student found with the provided ID.</p>
+    </div>
+</body>
+</html>

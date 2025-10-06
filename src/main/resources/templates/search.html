@@ -1,0 +1,88 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Search</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Search Student Records</h1>
+    <form id="searchForm">
+        <label for="stuId">StuId:</label>
+        <input type="text" id="stuId" name="stuId">
+        <label for="stuName">StuName:</label>
+        <input type="text" id="stuName" name="stuName">
+        <label for="courseId">CourseId:</label>
+        <input type="text" id="courseId" name="courseId">
+        <label for="courseName">CourseName:</label>
+        <input type="text" id="courseName" name="courseName">
+        <label for="semester">Semester:</label>
+        <input type="text" id="semester" name="semester">
+        <button type="button" onclick="searchStudents()">Search</button>
+        <button type="button" onclick="clearSearchParameters()">Clear Search Parameters</button>
+    </form>
+    <div id="messageArea"></div>
+    <table id="resultsTable">
+        <thead>
+            <tr>
+                <th>StuId</th>
+                <th>StuName</th>
+                <th>CourseId</th>
+                <th>CourseName</th>
+                <th>Semester</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script>
+        function searchStudents() {
+            $.ajax({
+                url: '/search',
+                method: 'GET',
+                data: $('#searchForm').serialize(),
+                success: function(response) {
+                    $('#resultsTable tbody').empty();
+                    response.forEach(function(student) {
+                        $('#resultsTable tbody').append(
+                            '<tr>' +
+                            '<td>' + student.stuId + '</td>' +
+                            '<td>' + student.stuName + '</td>' +
+                            '<td>' + student.courseId + '</td>' +
+                            '<td>' + student.courseName + '</td>' +
+                            '<td>' + student.semester + '</td>' +
+                            '<td><button onclick="viewDetails(' + student.stuId + ')">View</button></td>' +
+                            '</tr>'
+                        );
+                    });
+                },
+                error: function() {
+                    $('#messageArea').text('Failed to search students.');
+                }
+            });
+        }
+
+        function clearSearchParameters() {
+            $.ajax({
+                url: '/search/clear',
+                method: 'POST',
+                success: function(response) {
+                    $('#messageArea').text('Search parameters cleared.');
+                    $('#searchForm')[0].reset();
+                    $('#resultsTable tbody').empty();
+                },
+                error: function() {
+                    $('#messageArea').text('Failed to clear search parameters.');
+                }
+            });
+        }
+
+        function viewDetails(stuId) {
+            // Implement view details functionality
+        }
+    </script>
+</body>
+</html>
