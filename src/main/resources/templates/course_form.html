@@ -1,0 +1,41 @@
+package templates;
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Form</title>
+    <script>
+        function validateForm() {
+            var courseName = document.forms["courseForm"]["courseName"].value;
+            var semester = document.forms["courseForm"]["semester"].value;
+            if (courseName == "" || semester == "") {
+                alert("Course name and semester must be filled out");
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Course Registration</h1>
+    <form name="courseForm" th:action="@{/courses}" method="post" onsubmit="return validateForm()">
+        <label for="courseName">Course Name:</label>
+        <input type="text" id="courseName" name="courseName" th:field="*{courseName}" required />
+        <br/>
+        <label for="semester">Semester:</label>
+        <input type="text" id="semester" name="semester" th:field="*{semester}" required />
+        <br/>
+        <label for="subjects">Select Subjects:</label>
+        <select id="subjects" name="subjects" th:field="*{subjects}" multiple>
+            <option th:each="subject : ${subjects}" th:value="${subject.id}" th:text="${subject.name}"></option>
+        </select>
+        <br/>
+        <button type="submit">Submit</button>
+    </form>
+    <div th:if="${#lists.isNotEmpty(errors)}">
+        <ul>
+            <li th:each="error : ${errors}" th:text="${error}"></li>
+        </ul>
+    </div>
+</body>
+</html>

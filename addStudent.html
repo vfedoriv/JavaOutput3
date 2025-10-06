@@ -1,0 +1,45 @@
+package com.example.student;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Student</h1>
+        <form id="studentForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+            
+            <label for="course">Course:</label>
+            <input type="text" id="course" name="course" required>
+            
+            <button type="submit">Add Student</button>
+        </form>
+        <div id="message"></div>
+    </div>
+    <script>
+        document.getElementById('studentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const course = document.getElementById('course').value;
+
+            // Simulate a successful submission
+            if (name && address && course) {
+                document.getElementById('message').innerText = 'Student added successfully!';
+                document.getElementById('studentForm').reset();
+            } else {
+                document.getElementById('message').innerText = 'Error adding student. Please try again.';
+            }
+        });
+    </script>
+</body>
+</html>
