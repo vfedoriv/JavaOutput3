@@ -1,5 +1,6 @@
 # About
 This is a Spring Boot project: student information system that will allow the users to create subjects, add courses and students, and view the students' marks(grades).
+It also contains a React frontend to interact with the backend APIs.
 # Technologies Used
 - Java 17
 - Spring Boot 3.5.6
@@ -7,4 +8,4 @@ This is a Spring Boot project: student information system that will allow the us
 - Hibernate
 - PostgreSQL
 - Maven
-- Thymeleaf
+- React 18
